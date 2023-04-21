@@ -12,7 +12,7 @@ jobs:
 
     env:
       SUPABASE_ACCESS_TOKEN: sbp_d7b490e847bf038f9f6dea963a2411139b955b83
-      PROJECT_ID: Ykdurgcgeupwxcvihnexc
+      PROJECT_ID: kdurgcgeupwxcvihnexc
 
     steps:
       - uses: actions/checkout@v3
