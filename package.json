@@ -25,6 +25,7 @@
 	"type": "module",
 	"dependencies": {
 		"@prisma/client": "^4.13.0",
+		"@supabase/supabase-js": "^2.21.0",
 		"flowbite": "^1.6.5",
 		"flowbite-svelte": "^0.34.9"
 	}
