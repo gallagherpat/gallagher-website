@@ -8,7 +8,6 @@
 
     let articles = data.data;
     console.log(articles);
-    let array:Array = [];
     let showThumbs=false
     let showCaptions=false
     let duration: number = 3000;
