@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { createClient } from '@supabase/supabase-js';
     import { Navbar, NavBrand, NavLi, NavUl, NavHamburger, Card } from 'flowbite-svelte'
     import {DarkMode} from 'flowbite-svelte';
     import { Carousel } from 'flowbite-svelte';
@@ -26,7 +27,7 @@
     <NavUl {hidden}>
       <NavLi href="/" active={true}>Home</NavLi>
       <NavLi href="/about">About</NavLi>
-      <NavLi href="/services">Services</NavLi>
+      <NavLi href="/create">Create</NavLi>
       <NavLi href="/pricing">Pricing</NavLi>
       <NavLi href="/contact">Contact</NavLi>
     </NavUl>
