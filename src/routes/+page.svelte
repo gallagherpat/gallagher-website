@@ -39,9 +39,10 @@
 
 
   {#each articles as article}
-  <Card href="/cards" class="mx-auto mt-4">
+  <input type="hidden" hidden value={article.id}>
+  <Card href="/blog/{article.id}" class="mx-auto mt-4">
     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{article.title}</h5>
-    <p class="font-normal text-gray-700 dark:text-gray-400 leading-tight">${article.content}</p>
+    <p class="font-normal text-gray-700 dark:text-gray-400 leading-tight">{article.content}</p>
 </Card>
   {/each}
 
