@@ -15,8 +15,10 @@
 		"seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
 	},
 	"devDependencies": {
+		"@skeletonlabs/skeleton": "^1.2.5",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.5.0",
+		"@tailwindcss/typography": "^0.5.9",
 		"@types/node": "^18.15.13",
 		"autoprefixer": "^10.4.14",
 		"postcss": "^8.4.23",
@@ -27,7 +29,8 @@
 		"ts-node": "^10.9.1",
 		"tslib": "^2.5.0",
 		"typescript": "^5.0.4",
-		"vite": "^4.2.0"
+		"vite": "^4.2.0",
+		"zod": "^3.21.4"
 	},
 	"dependencies": {
 		"@prisma/client": "^4.13.0",
@@ -36,6 +39,7 @@
 		"@vercel/analytics": "^1.0.0",
 		"dotenv": "^16.0.3",
 		"flowbite": "^1.6.5",
-		"flowbite-svelte": "^0.34.9"
+		"flowbite-svelte": "^0.34.9",
+		"sveltekit-superforms": "^0.8.2"
 	}
 }
