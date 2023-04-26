@@ -1,7 +1,6 @@
 <script>
     import { Input, Label, Helper, Textarea, Toolbar, ToolbarGroup, ToolbarButton, Button } from 'flowbite-svelte';
     export let form;
-    console.log(form);
   </script>
 
 

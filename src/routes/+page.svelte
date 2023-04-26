@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { createClient } from '@supabase/supabase-js';
-    import { Navbar, NavBrand, NavLi, NavUl, NavHamburger, Card } from 'flowbite-svelte'
-    import {DarkMode} from 'flowbite-svelte';
-    import { Carousel } from 'flowbite-svelte';
-    import {images} from './imageData/image';
+    // import { Navbar, NavBrand, NavLi, NavUl, NavHamburger, Card } from 'flowbite-svelte'
+    // import {DarkMode} from 'flowbite-svelte';
+    // import { Carousel } from 'flowbite-svelte';
+    // import {images} from './imageData/image';
 
     export let data;
 
@@ -13,12 +12,12 @@
     let showCaptions=false
     let duration: number = 3000;
 
-    let btnClass = 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-xl p-2';
+    // let btnClass = 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-xl p-2';
 </script>
 
 
 
-  <Navbar let:hidden let:toggle rounded color="form" navClass="mx-6 my-1 py-1">
+  <!-- <Navbar let:hidden let:toggle rounded color="form" navClass="mx-6 my-1 py-1">
     <NavBrand href="/">
       <img src="./favicon.png" class="mr-3 ml-2 h-6 sm:h-9" alt="Flowbite Logo"/>
       <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Flowbite</span>
@@ -47,5 +46,5 @@
   {/each}
 
 
-  <DarkMode {btnClass}/>
+  <DarkMode {btnClass}/> -->
 

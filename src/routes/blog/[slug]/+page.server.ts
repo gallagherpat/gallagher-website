@@ -1,8 +1,33 @@
-import { error } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
 import { PrismaClient } from "@prisma/client";
+import { redirect } from "@sveltejs/kit";
 
 const prisma = new PrismaClient();
+
+export const actions = {
+    delete:async ({request}) => {
+        const data = await request.formData();
+        const articleID: string = data.get('id');
+        async function main(){
+            const article = await prisma.article.delete({
+                where: {
+                    id: parseInt(articleID),
+                }
+            })
+        }
+        main()
+        .then(async()=>{
+            await prisma.$disconnect()
+            console.log(await prisma.$disconnect())
+        })
+        .catch(async()=>{
+            console.error(e)
+            await prisma.$disconnect()
+            process.exit(1)
+        })
+    }
+}
+
 
 export const load = (async({params}) =>{
     const data = await params.slug;
