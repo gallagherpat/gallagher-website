@@ -1,7 +1,5 @@
-import { PrismaClient, Prisma } from '@prisma/client';
 import {fail} from '@sveltejs/kit';
-
-const prisma = new PrismaClient();
+import prisma from '$lib/prisma.ts';
 
 interface oData {
     title: string,

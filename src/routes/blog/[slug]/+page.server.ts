@@ -1,8 +1,5 @@
+import prisma from "$lib/prisma.ts";
 import type { PageServerLoad } from "./$types";
-import { PrismaClient } from "@prisma/client";
-import { redirect } from "@sveltejs/kit";
-
-const prisma = new PrismaClient();
 
 export const actions = {
     delete:async ({request}) => {
@@ -20,7 +17,7 @@ export const actions = {
             await prisma.$disconnect()
             console.log(await prisma.$disconnect())
         })
-        .catch(async()=>{
+        .catch(async(e)=>{
             console.error(e)
             await prisma.$disconnect()
             process.exit(1)
