@@ -6,47 +6,43 @@
 	// Most of your app wide CSS should be put in this file
 	import '../app.postcss';
 	import { AppShell, AppBar} from '@skeletonlabs/skeleton';
-
-
-
 </script>
 
 <AppShell>
 	<svelte:fragment slot="header">
-
 		<AppBar>
 			<svelte:fragment slot="lead">
-				<strong class="text-xl uppercase">Skeleton</strong>
+				<a href="/" class="text-2xl ml-12 font-bold uppercase">Skeleton</a>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
-				<a
-					class="btn btn-sm variant-ghost-surface"
-					href="https://discord.gg/EXqV7W8MtY"
-					target="_blank"
-					rel="noreferrer"
-				>
-					Discord
-				</a>
-				<a
-					class="btn btn-sm variant-ghost-surface"
-					href="https://twitter.com/SkeletonUI"
-					target="_blank"
-					rel="noreferrer"
-				>
-					Twitter
-				</a>
-				<a
-					class="btn btn-sm variant-ghost-surface"
-					href="https://github.com/skeletonlabs/skeleton"
-					target="_blank"
-					rel="noreferrer"
-				>
-					GitHub
-				</a>
+				<div class="mr-12">
+					<a
+						class="btn btn-sm variant-ghost-surface"
+						href="/create"
+					>
+						Create
+					</a>
+					<a
+						class="btn btn-sm variant-ghost-surface"
+						href="https://twitter.com/SkeletonUI"
+						target="_blank"
+						rel="noreferrer"
+					>
+						Twitter
+					</a>
+					<a
+						class="btn btn-sm variant-ghost-surface"
+						href="https://github.com/skeletonlabs/skeleton"
+						target="_blank"
+						rel="noreferrer"
+					>
+						GitHub
+					</a>
+				</div>
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
-
+	<!-- <svelte:fragment slot="sidebarLeft">Sidebar Left</svelte:fragment> -->
 	<slot />
 </AppShell>
 
