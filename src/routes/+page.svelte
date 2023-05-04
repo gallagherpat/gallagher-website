@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang="ts>
     let currentVariant = 'bg-initial';
     export let data;
 
@@ -50,4 +50,3 @@
     {/each}
    
 </div>
-
