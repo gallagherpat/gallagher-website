@@ -1,3 +1,4 @@
+
 <script lang="ts">
     export let form
 </script>
@@ -15,3 +16,4 @@
     </label>
     <button class="btn variant-filled" type="submit">Add data</button>
 </form>
+

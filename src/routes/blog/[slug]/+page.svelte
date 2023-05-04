@@ -1,4 +1,5 @@
 <script lang="ts">
+
 	import { Modal, modalStore } from '@skeletonlabs/skeleton';
     import type {ModalSettings, ModalComponent} from '@skeletonlabs/skeleton';
     import UpdateModal from '../../docs/components/updateModal.svelte';
