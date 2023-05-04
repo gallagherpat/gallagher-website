@@ -1,4 +1,5 @@
 <script lang="ts">
+    console.log("fixed")
     let currentVariant = 'bg-initial';
     export let data;
 
