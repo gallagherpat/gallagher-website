@@ -24,11 +24,10 @@
 					</a>
 					<a
 						class="btn btn-sm variant-ghost-surface"
-						href="https://twitter.com/SkeletonUI"
-						target="_blank"
+						href="/signup"
 						rel="noreferrer"
 					>
-						Twitter
+					Sign up
 					</a>
 					<a
 						class="btn btn-sm variant-ghost-surface"
