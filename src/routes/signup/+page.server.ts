@@ -1,5 +1,5 @@
-import type { Actions } from "./$types";
-import { fail } from "@sveltejs/kit";
+import type { Actions, PageServerLoad } from "./$types";
+import { fail, redirect } from "@sveltejs/kit";
 import { z } from 'zod';
 import { superValidate } from 'sveltekit-superforms/server';
 
@@ -19,6 +19,11 @@ const newUserSchema = z.object({
 
 export const load = async (event) => {
     const form = await superValidate(event, newUserSchema)
+    const user = event.locals.user;
+
+    if(user){
+        throw redirect(302, '/guarded');
+    }
     return{
         form
     }
@@ -34,6 +39,9 @@ export const actions = {
                 form
             })
         }
+
+        
+
         return {
             form
         }

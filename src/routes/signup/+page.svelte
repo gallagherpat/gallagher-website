@@ -4,12 +4,14 @@
 
     export let data: PageData
     
-    const {form, errors, constraints} = superForm(data.form);
+    const {form, enhance, errors, constraints } = superForm(data.form, {
+        taintedMessage: 'Are you sure you want to leave? Changes will not be saved'
+    });
 </script>
 
 
 <main class="w-[70%] md:w-1/2 lg:w-1/3 mx-auto my-6">
-    <form class="card p-4 text-token space-y-4 mt-4" method="POST">
+    <form class="card p-4 text-token space-y-4 mt-4" method="POST" use:enhance>
         <h1>Sign Up</h1>
         <label class="label" for="userName">
             User Name:
