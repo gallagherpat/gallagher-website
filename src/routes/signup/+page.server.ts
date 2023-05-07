@@ -2,6 +2,9 @@ import type { Actions, PageServerLoad } from "./$types";
 import { fail, redirect } from "@sveltejs/kit";
 import { z } from 'zod';
 import { superValidate } from 'sveltekit-superforms/server';
+import {user} from '$lib/services/user.model'
+
+
 
 const newUserSchema = z.object({
     userName: z.string().min(5),
@@ -19,7 +22,7 @@ const newUserSchema = z.object({
 
 export const load = async (event) => {
     const form = await superValidate(event, newUserSchema)
-    const user = event.locals.user;
+    // const user = event.locals.user;
 
     if(user){
         throw redirect(302, '/guarded');
@@ -30,8 +33,8 @@ export const load = async (event) => {
 }
 
 export const actions = {
-    default:async(event) =>{
-        const form = await superValidate(event, newUserSchema);
+    default:async({request, cookies}) =>{
+        const form = await superValidate(request, newUserSchema);
         console.log(form);
         
         if(!form.valid) {
@@ -40,7 +43,7 @@ export const actions = {
             })
         }
 
-        
+        user(form.data, cookies);
 
         return {
             form

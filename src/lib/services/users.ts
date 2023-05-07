@@ -17,6 +17,14 @@ export const findByUuid = async (uuid: string) => {
     })
 }
 
+export const findByUserName =async (userName: string) => {
+    return await prisma.user.findUnique({
+        where: {
+            userName: userName
+        }
+    })
+}
+
 /**
  * Get user by email
  * 
