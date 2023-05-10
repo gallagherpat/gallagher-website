@@ -21,8 +21,11 @@ const newUserSchema = z.object({
 })
 
 export const load = async (event) => {
-    const form = await superValidate(event, newUserSchema)
-    // const user = event.locals.user;
+    const form = await superValidate(event, newUserSchema);
+    //@ts-ignore
+    const user = event.locals.user;
+
+    console.log(event.cookies.getAll());
 
     if(user){
         throw redirect(302, '/guarded');

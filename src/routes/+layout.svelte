@@ -24,18 +24,17 @@
 					</a>
 					<a
 						class="btn btn-sm variant-ghost-surface"
-						href="/signup"
+						href="/login"
 						rel="noreferrer"
 					>
-					Sign up
+					Log In
 					</a>
 					<a
 						class="btn btn-sm variant-ghost-surface"
-						href="https://github.com/skeletonlabs/skeleton"
-						target="_blank"
+						href="/signup"
 						rel="noreferrer"
 					>
-						GitHub
+						Sign Up
 					</a>
 				</div>
 			</svelte:fragment>
