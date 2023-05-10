@@ -1,13 +1,16 @@
 <script lang="ts">
-    console.log("fixed")
+    //console.log("fixed")
     let currentVariant = 'bg-initial';
     export let data;
 
     let articles = data.data;
-    console.log(data)
+    //console.log(data)
 </script>
 
 <section class="w-[70%] mx-auto my-6">
+	<form action="?/logOut" method="POST">
+		<button class="btn variant-filled-primary">Logout</button>
+    </form>
     <div class="logo-cloud grid-cols-1 lg:!grid-cols-3 gap-0.5">
         <a class="logo-item {currentVariant}" href="https://twitch.com/" target="_blank" rel="noreferrer">
             <i class="fa-brands fa-twitch text-2xl" />

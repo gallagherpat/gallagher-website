@@ -5,7 +5,7 @@ import { json } from '@sveltejs/kit';
 export const PATCH = (async({ request }) => {
     const body = await request.json();
     const articleID: number = await body.data.id
-    console.log(articleID);
+    //console.log(articleID);
      async function main(){
         const article = await prisma.article.update({
             where: {
@@ -20,7 +20,7 @@ export const PATCH = (async({ request }) => {
     main()
     .then(async()=>{
         await prisma.$disconnect()
-        console.log(await prisma.$disconnect())
+        //console.log(await prisma.$disconnect())
     })
     .catch(async(e)=>{
         console.error(e)

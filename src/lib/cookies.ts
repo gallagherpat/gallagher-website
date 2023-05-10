@@ -28,6 +28,7 @@ export const setAuthenticationCookies = (cookies: Cookies, uuid: string) => {
 }
 
 export const deleteAuthenticationCookies = async (cookies: Cookies,) => {
+    console.log(cookies.getAll());
     cookies.delete('sveltekit_auth_app');
     cookies.delete('sveltekit_auth_app_refresh_token');
 }

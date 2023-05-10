@@ -13,7 +13,7 @@ export const user = (data, cookies) => {
     let emailCheck = validate(data.email);
 
     if(!emailCheck){
-        console.log("email is not in use")
+        //console.log("email is not in use")
         createUser();
         setAuthenticationCookies(cookies, uuid);
         throw redirect(302, "/");

@@ -25,7 +25,7 @@ export const load = async (event) => {
     //@ts-ignore
     const user = event.locals.user;
 
-    console.log(event.cookies.getAll());
+    //console.log(event.cookies.getAll());
 
     if(user){
         throw redirect(302, '/guarded');
@@ -38,7 +38,7 @@ export const load = async (event) => {
 export const actions = {
     default:async({request, cookies}) =>{
         const form = await superValidate(request, newUserSchema);
-        console.log(form);
+        //console.log(form);
         
         if(!form.valid) {
             return fail(400, {

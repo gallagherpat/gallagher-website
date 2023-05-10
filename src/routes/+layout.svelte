@@ -36,6 +36,13 @@
 					>
 						Sign Up
 					</a>
+					<a
+					class="btn btn-sm variant-ghost-surface"
+					href="/guarded"
+					rel="noreferrer"
+				>
+					Protected
+				</a>
 				</div>
 			</svelte:fragment>
 		</AppBar>

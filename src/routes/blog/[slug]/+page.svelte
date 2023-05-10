@@ -21,7 +21,7 @@
                                 'content-type': 'application/json'
                             }
                         });
-                        console.log(await req.json());
+                        //console.log(await req.json());
                     }
                     Delete();
                 }
@@ -49,7 +49,7 @@
                             'content-type': 'application/json'
                         }
                     })
-                    console.log(await req.json());
+                    //console.log(await req.json());
                 }
                 Patch();
                 }
