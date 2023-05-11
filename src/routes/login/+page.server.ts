@@ -5,7 +5,7 @@ import { setAuthenticationCookies } from '$lib/cookies';
 import { findByUserName } from '$lib/services/users';
 
 export const actions: Actions = {
-    default:async ({cookies, request}) => {
+    default:async ({cookies, request, locals}) => {
         const data = await request.formData();
         const userName = data.get('userName');
         const password = data.get("password");
@@ -20,6 +20,11 @@ export const actions: Actions = {
             })
         }
         if(user){
+            locals.user = {
+                id: user.uuid,
+                email: user.email,
+                user: user.userName
+            }
             setAuthenticationCookies(cookies, user.uuid);
         }
         throw redirect(302, '/guarded');

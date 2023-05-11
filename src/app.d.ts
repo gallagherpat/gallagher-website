@@ -4,6 +4,7 @@
 type User = {
 	id: string
 	email: string
+	user: string
 }
 
 declare namespace App {
