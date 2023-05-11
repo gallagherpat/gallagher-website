@@ -9,6 +9,10 @@ export const handle: Handle = async ({event, resolve}) =>{
         if(!event.cookies.get("sveltekit_auth_app")){
             throw redirect(303, "/")
         }
+    }else if(event.url.pathname.startsWith("/signup")){
+        if(event.cookies.get("sveltekit_auth_app")){
+            throw redirect(303, "/guarded")
+        }
     }
 
     const response = await resolve(event);

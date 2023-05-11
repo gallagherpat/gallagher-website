@@ -1,12 +1,17 @@
 <script lang="ts">
+	import Error from './../../lib/components/alerts/Error.svelte';
+	import { error } from '@sveltejs/kit';
     import type {PageData} from './$types';
     import { superForm } from 'sveltekit-superforms/client';
 
     export let data: PageData
-    
+
+
     const {form, enhance, errors, constraints } = superForm(data.form, {
         taintedMessage: 'Are you sure you want to leave? Changes will not be saved'
     });
+
+    
 </script>
 
 
@@ -24,7 +29,7 @@
             {...$constraints.userName}
             required/>
             {#if $errors.userName}
-                <small class="text-red-600">{$errors.userName}</small>
+                <small class="text-red-600">{$errors.userName}</small>            
             {/if}
         </label>
         <label class="label" for="email">
