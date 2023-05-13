@@ -21,7 +21,7 @@ export const validateUser = async (data) => {
     let userInput = data;
     const user = await prisma.user.findUnique({
         where: {
-            userName: userInput
+            username: userInput
         }
     })
 

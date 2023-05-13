@@ -24,11 +24,9 @@ model User {
   username     String @unique
   email        String @unique 
   password     String
-  auth_session Session[]
-  auth_key     Key[]
+  session      Session[]
+  key          Key[]
   articles     Article[]
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
 
   @@map("user")
 }
@@ -48,8 +46,7 @@ model Key {
   id              String  @id @unique
   hashed_password String?
   user_id         String
-  primary_key     Boolean
-  expires         BigInt?
+  primary         Boolean
   user            User    @relation(references: [id], fields: [user_id], onDelete: Cascade)
 
   @@index([user_id])

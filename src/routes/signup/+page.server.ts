@@ -1,10 +1,9 @@
 import type { Actions, PageServerLoad } from "./$types";
 import { fail, redirect } from "@sveltejs/kit";
 import { z } from 'zod';
-import { superValidate, setError } from 'sveltekit-superforms/server';
-import {user} from '$lib/services/user.model'
+import { superValidate, setError, message } from 'sveltekit-superforms/server';
 import { validateEmail, validateUser } from '$lib/services/validate'
-
+import {auth} from "$lib/server/lucia"
 
 const newUserSchema = z.object({
     userName: z.string().min(5),
@@ -21,28 +20,29 @@ const newUserSchema = z.object({
 })
 
 export const load = async (event) => {
-    
+    // const session = await locals.validate();
+    // if(session){
+    //     throw redirect(302, "/");
+    // }
     const form = await superValidate(event, newUserSchema);
-    //@ts-ignore
-    const user = event.locals.user;
+    
 
     //console.log(event.cookies.getAll());
-
-    if(user){
-        throw redirect(302, '/guarded');
-    }
     return{
         form
     }
 }
 
 export const actions = {
-    default:async({request, cookies}) =>{
+    default:async({request}) =>{
         const form = await superValidate(request, newUserSchema);
-        const isUniqueEmail = await validateEmail(form.data.email);
-        const isUniqueUser = await validateUser(form.data.userName);
+        const username = await form.data.userName.toString();
+        const email = await form.data.email.toString();
+        const password = await form.data.password.toString();
+        const isUniqueUser =  await validateUser(username);
+        const isUniqueEmail = await validateEmail(email);
+        console.log(isUniqueUser);
 
-        
         if(! await isUniqueEmail){
             return setError(form, 'email', 'E-mail already exists.');
         }
@@ -64,15 +64,23 @@ export const actions = {
 
         if(form.valid && await isUniqueEmail && await isUniqueUser){
             console.log("the user is valid")
-            user(form.data, cookies);
+            try {
+                const user = await auth.createUser({
+                    primaryKey: {
+                        providerId: "email",
+                        providerUserId: email,
+                        password: password,
+                    },
+                    attributes: {
+                        username: username,
+                        email: email,
+                    },
+                })
+            }catch(err){
+                console.error(err);
+                return setError(form, "userName", "something went wrong")
+            }
         }
-
-        if(cookies.get("sveltekit_auth_app")){
-            throw redirect(300, "/guarded")
-        }
-
-        return {
-            form
-        }
+        throw redirect(302, '/login');
     }
 }satisfies Actions

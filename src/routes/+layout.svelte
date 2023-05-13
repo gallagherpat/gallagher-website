@@ -8,10 +8,10 @@
 	import { AppShell, AppBar} from '@skeletonlabs/skeleton';
 	import type { PageData } from './$types';
 
-	export let data:PageData
+	// export let data:PageData
 
 	// console.log('Layout')
-	console.log(data);
+	// console.log(data);
 </script>
 
 <AppShell>

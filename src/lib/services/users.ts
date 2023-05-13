@@ -1,26 +1,26 @@
 import  prisma  from '$lib/server/prisma';
 
-/**
- * Get user by uuid 
- * 
- * @param uuid 
- * @returns 
- */
-export const findByUuid = async (uuid: string) => {
-    return await prisma.user.findUnique({
-        where: {
-            uuid: uuid,
-        },
-        select: {
-            email: true,
-        }
-    })
-}
+// /**
+//  * Get user by uuid 
+//  * 
+//  * @param uuid 
+//  * @returns 
+//  */
+// export const findByUuid = async (uuid: string) => {
+//     return await prisma.user.findUnique({
+//         where: {
+//             uuid: uuid,
+//         },
+//         select: {
+//             email: true,
+//         }
+//     })
+// }
 
 export const findByUserName = async (userName: string) => {
     return await prisma.user.findUnique({
         where: {
-            userName: userName
+            username: userName
         }
     })
 }
