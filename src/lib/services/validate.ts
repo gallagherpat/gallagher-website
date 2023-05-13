@@ -1,12 +1,10 @@
 import prisma from "$lib/server/prisma";
 
-export const validateEmail = async (data) =>{
-    console.log("Validate email")
-    let emailInput = data
-    console.log(emailInput);
-    const user = await prisma.user.findUnique({
+export const validateEmail = async (data:string) =>{
+    console.log(data);
+    const user = await prisma.authUser.findUnique({
         where: {
-            email: emailInput
+            email: data
         }
     })
 
@@ -16,12 +14,11 @@ export const validateEmail = async (data) =>{
     return true
 }
 
-export const validateUser = async (data) => {
-    console.log("validate user");
-    let userInput = data;
-    const user = await prisma.user.findUnique({
+export const validateUser = async (data:string) => {
+    console.log(data);
+    const user = await prisma.authUser.findUnique({
         where: {
-            username: userInput
+            username: data
         }
     })
 

@@ -1,28 +1,28 @@
-import type { Actions } from './$types';
-import { fail, redirect } from '@sveltejs/kit';
-import { compareSync } from 'bcryptjs';
-import { setAuthenticationCookies } from '$lib/cookies';
-import { findByUserName } from '$lib/services/users';
+import type { Actions, PageServerLoad } from './$types';
+import { auth } from "$lib/server/lucia";
+import { redirect, fail } from '@sveltejs/kit';
+
+// If the user exists, redirect authenticated users to the profile page.
+export const load: PageServerLoad = async ({ locals }) => {
+	const session = await locals.auth.validate();
+	if (session) throw redirect(302, "/");
+};
 
 export const actions: Actions = {
-    default:async ({cookies, request}) => {
-        const data = await request.formData();
-        const userName = data.get('userName');
-        const password = data.get("password");
- 
-
-        const user = await findByUserName(String(userName));
-
-        if(!compareSync(String(password), String(user?.password))){
-            return fail(400, {
-                error: true,
-                message: password
-            })
+    default:async ({locals, request}) => {
+        const form = await request.formData();
+        const username = form.get('userName');
+        const password = form.get("password");
+        if (typeof username !== "string" || typeof password !== "string"){
+            return fail(400);
         }
-        console.log(user);
-        if(user){
-            setAuthenticationCookies(cookies, user.uuid);
+        try{
+            const key = await auth.useKey("username", username, password);
+            const session = await auth.createSession(key.userId);
+			locals.auth.setSession(session);
+        }catch {
+            // invalid credentials
+			return fail(400);
         }
-        throw redirect(302, '/guarded');
     }
 }

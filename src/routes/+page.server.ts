@@ -1,33 +1,11 @@
+import { type Actions, fail } from "@sveltejs/kit";
+import { auth } from "$lib/server/lucia";
 
-import type { Actions, PageServerLoad } from './$types';
-import prisma from '$lib/server/prisma';
-import { deleteAuthenticationCookies } from '$lib/cookies';
-
-export const load: PageServerLoad = (async ({}) =>{
-  async function main() {
-  const articles = await prisma.article.findMany()
-      return articles
-    }
-    main()
-    .then(async () => {
-      await prisma.$disconnect()
-    })
-    .catch(async (e) => {
-      console.error(e)
-      await prisma.$disconnect()
-      process.exit(1)
-    })
-    return {
-      data: await main(),
-    }
-})
-
-export const actions:Actions = {
-    logOut:async ({request, cookies}) => {
-        const formData = await request.formData();
-        console.log(formData);
-        deleteAuthenticationCookies(cookies);
-  }
-}
-
-
+export const actions: Actions = {
+	default: async ({ locals }) => {
+		const session = await locals.auth.validate();
+		if (!session) return fail(401);
+		await auth.invalidateSession(session.sessionId); // invalidate session
+		locals.auth.setSession(null); // remove cookie
+	}
+};

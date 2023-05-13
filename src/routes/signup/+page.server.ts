@@ -19,29 +19,26 @@ const newUserSchema = z.object({
     }
 })
 
-export const load = async (event) => {
-    // const session = await locals.validate();
-    // if(session){
-    //     throw redirect(302, "/");
-    // }
+//@ts-ignore
+export const load: PageServerLoad = async ({event, locals}) => {
+    const session = await locals.auth.validate();
+	if (session) throw redirect(302, "/");
+
     const form = await superValidate(event, newUserSchema);
     
-
-    //console.log(event.cookies.getAll());
     return{
         form
     }
 }
 
-export const actions = {
+export const actions: Actions = {
     default:async({request}) =>{
         const form = await superValidate(request, newUserSchema);
-        const username = await form.data.userName.toString();
-        const email = await form.data.email.toString();
-        const password = await form.data.password.toString();
+        const username = await form.data.userName;
+        const email = await form.data.email;
+        const password = await form.data.password;
         const isUniqueUser =  await validateUser(username);
         const isUniqueEmail = await validateEmail(email);
-        console.log(isUniqueUser);
 
         if(! await isUniqueEmail){
             return setError(form, 'email', 'E-mail already exists.');
@@ -58,29 +55,25 @@ export const actions = {
             })
         }
 
-        if(isUniqueEmail){
-            console.log("it is a unique email")
-        }
-
-        if(form.valid && await isUniqueEmail && await isUniqueUser){
+        if(form.valid && await isUniqueUser){
             console.log("the user is valid")
             try {
                 const user = await auth.createUser({
                     primaryKey: {
-                        providerId: "email",
-                        providerUserId: email,
-                        password: password,
+                        providerId: "username",
+                        providerUserId: username,
+                        password,
                     },
                     attributes: {
                         username: username,
                         email: email,
                     },
-                })
+                });
             }catch(err){
                 console.error(err);
                 return setError(form, "userName", "something went wrong")
             }
         }
-        throw redirect(302, '/login');
+        throw redirect(302, '/');
     }
-}satisfies Actions
+}

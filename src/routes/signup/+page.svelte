@@ -1,6 +1,4 @@
 <script lang="ts">
-	import Error from './../../lib/components/alerts/Error.svelte';
-	import { error } from '@sveltejs/kit';
     import type {PageData} from './$types';
     import { superForm } from 'sveltekit-superforms/client';
 
