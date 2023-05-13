@@ -1,4 +1,4 @@
-import  prisma  from '$lib/prisma';
+import  prisma  from '$lib/server/prisma';
 
 /**
  * Get user by uuid 
@@ -23,6 +23,24 @@ export const findByUserName = async (userName: string) => {
             userName: userName
         }
     })
+}
+
+/**
+ * Get user by refreshtoken
+ * 
+ * @param refreshTokenc 
+ * @returns 
+ */
+export const findByRefreshToken = async (refreshToken:string) => {
+    console.log(refreshToken);
+    // return await prisma.user.findUnique({
+    //     where: {
+    //         refreshToken: refreshToken
+    //     },
+    //     select: {
+    //         email: true,
+    //     }
+    // })
 }
 
 /**

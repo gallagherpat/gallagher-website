@@ -1,6 +1,6 @@
 
 import type { Actions, PageServerLoad } from './$types';
-import prisma from '$lib/prisma';
+import prisma from '$lib/server/prisma';
 import { deleteAuthenticationCookies } from '$lib/cookies';
 
 export const load: PageServerLoad = (async ({}) =>{
@@ -18,7 +18,7 @@ export const load: PageServerLoad = (async ({}) =>{
       process.exit(1)
     })
     return {
-      data: await main()
+      data: await main(),
     }
 })
 

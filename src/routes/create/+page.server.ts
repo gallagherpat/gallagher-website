@@ -1,5 +1,5 @@
 import {fail} from '@sveltejs/kit';
-import prisma from '$lib/prisma.ts';
+import prisma from '$lib/server/prisma';
 
 interface oData {
     title: string,

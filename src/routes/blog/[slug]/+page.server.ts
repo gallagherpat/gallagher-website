@@ -1,4 +1,4 @@
-import prisma from "$lib/prisma.ts";
+import prisma from "$lib/server/prisma.ts";
 
 import type { Actions, PageServerLoad } from "./$types";
 

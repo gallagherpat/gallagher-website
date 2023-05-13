@@ -9,7 +9,7 @@
 
 <section class="w-[70%] mx-auto my-6">
 	<form action="?/logOut" method="POST">
-		<button class="btn variant-filled-primary">Logout</button>
+		<button formaction="?/logOut" class="btn variant-filled-primary">Logout</button>
     </form>
     <div class="logo-cloud grid-cols-1 lg:!grid-cols-3 gap-0.5">
         <a class="logo-item {currentVariant}" href="https://twitch.com/" target="_blank" rel="noreferrer">

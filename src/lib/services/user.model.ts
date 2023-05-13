@@ -1,4 +1,4 @@
-import prisma from "$lib/prisma";
+import prisma from "$lib/server/prisma";
 import { hashSync } from 'bcryptjs';
 import { randomUUID } from 'crypto';
 import { setAuthenticationCookies } from '$lib/cookies';

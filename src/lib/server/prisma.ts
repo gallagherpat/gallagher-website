@@ -1,5 +1,6 @@
-// src/lib/prisma.ts
+// src/lib/server/prisma.ts
 import { PrismaClient } from '@prisma/client'
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
+
 export default prisma

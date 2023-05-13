@@ -3,8 +3,6 @@
 // and what to do when importing types
 type User = {
 	id: string
-	email: string
-	user: string
 }
 
 declare namespace App {
@@ -16,3 +14,5 @@ declare namespace App {
 		user: User 
 	}
 }
+
+

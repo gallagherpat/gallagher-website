@@ -42,9 +42,15 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@lucia-auth/adapter-prisma": "^2.0.0",
+		"@lucia-auth/sveltekit": "^0.6.11",
 		"@prisma/client": "^4.13.0",
 		"bcryptjs": "^2.4.3",
 		"dotenv": "^16.0.3",
-		"jsonwebtoken": "^9.0.0"
+		"jsonwebtoken": "^9.0.0",
+		"lucia-auth": "^1.5.0"
+	},
+	"overrides": {
+		"lucia-auth": "^1.5.0"
 	}
 }
