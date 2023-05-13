@@ -1,5 +1,5 @@
 import {fail} from '@sveltejs/kit';
-import prisma from '$lib/prisma.ts';
+import prisma from '$lib/server/prisma';
 
 interface oData {
     title: string,
@@ -10,8 +10,8 @@ export const actions = {
     create:async ({request}) => {
         const formData = await request.formData();
 
-        const title: string = formData.get('title');
-        const content: string = formData.get('content');
+        const title: string =  formData.get('title').toString();
+        const content: string = formData.get('content').toString();
 
         if(title.length < 1 || content.length < 1){
             return fail(400, {
