@@ -4,12 +4,12 @@ import { json } from '@sveltejs/kit';
 
 export const PATCH = (async({ request }) => {
     const body = await request.json();
-    const articleID: number = await body.data.id
+    const postId: number = await body.data.id
     //console.log(articleID);
      async function main(){
-        const article = await prisma.article.update({
+        const article = await prisma.post.update({
             where: {
-                id: articleID
+                id: postId
             },
             data: {
                 title: body.data.newTitle,

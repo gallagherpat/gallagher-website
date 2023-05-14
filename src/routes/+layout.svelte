@@ -7,9 +7,25 @@
 	import '../app.postcss';
 	import { AppShell, AppBar} from '@skeletonlabs/skeleton';
 	import type {PageData} from './$types'
+	import { error, redirect } from '@sveltejs/kit';
 
 	export let data: PageData;
 
+	async function signout() {
+
+		try{
+			const req = await fetch('/api/signout', {
+			method: 'POST'
+		});
+		const data = await req.json();
+		if(data.success){
+			location.reload();
+		}
+		}catch (error){
+			console.error(error)
+		}
+
+	}
 </script>
 
 
@@ -45,8 +61,15 @@
 					{/if}
 
 					{#if data.user}
-					<form method="POST">
-						<button class="btn btn-sm variant-ghost-surface" type="submit">Sign out</button>
+					<form method="POST" on:submit|preventDefault={signout}>
+						<button class="btn btn-sm variant-ghost-surface" type="submit" formaction="?/signout">Sign out</button>
+						<a
+						class="btn btn-sm variant-ghost-surface"
+						href="/create"
+						rel="noreferrer"
+					>
+						Create
+					</a>
 					</form>
 					{/if}
 

@@ -4,12 +4,12 @@ import { json } from '@sveltejs/kit';
 
 export const DELETE = (async({ request }) => {
     const body = await request.json();
-    const articleID = await body.id
+    const postId = await body.id
     //console.log(articleID);
      async function main(){
-        const article = await prisma.article.delete({
+        const post = await prisma.post.delete({
             where: {
-                id: parseInt(articleID),
+                id: parseInt(postId),
             }
         })
     }
