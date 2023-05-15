@@ -45,7 +45,7 @@
 			<svelte:fragment slot="trail">
 				<div class="mr-12">
 					<!-- <a
-					<!-- <a
+					 <a
 						class="btn btn-sm variant-ghost-surface"
 						href="/create"
 					>
@@ -62,7 +62,6 @@
 					<a
 						class="btn btn-sm variant-ghost-surface"
 						href="/login"
-						href="/signup"
 						rel="noreferrer"
 					>
 						Log In
@@ -76,7 +75,6 @@
 						<a
 						class="btn btn-sm variant-ghost-surface"
 						href="/signup"
-						href="/create"
 						rel="noreferrer"
 					>
 						Sign Up
@@ -97,8 +95,7 @@
 				>
 					Protected
 				</a> -->
-					</form>
-					{/if}
+
 
 					<!-- <a
 					class="btn btn-sm variant-ghost-surface"
