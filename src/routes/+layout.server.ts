@@ -10,10 +10,3 @@ export const load: PageServerLoad = async ({ locals }) => {
 	};
 };
 
-
-export const load: PageServerLoad = async ({ locals }) => {
-	const { user } = await locals.auth.validateUser();
-	return await {
-		user
-	};
-};
