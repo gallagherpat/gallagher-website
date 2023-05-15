@@ -2,7 +2,7 @@
 
 	import { Modal, modalStore } from '@skeletonlabs/skeleton';
     import type {ModalSettings, ModalComponent} from '@skeletonlabs/skeleton';
-    import UpdateModal from '../../docs/components/updateModal.svelte';
+    // import UpdateModal from '../../docs/components/updateModal.svelte';
     import type {PageData} from './$types';
     export let data: PageData;
 
@@ -62,11 +62,15 @@
 <article class="mx-auto mt-12 prose lg:prose-xl dark:text-white">
     <h1 class="dark:text-gray-200">{data.data.title}</h1>
     <p class="text-xl">{data.data.content}</p>
-    
 
+    {#if data.user}
     <footer>
-            <button class="btn variant-filled-primary" on:click={modalConfirm}>Delete</button>
-            <button class="btn variant-filled-secondary" on:click={modalUpdate}>Update</button>
+        <button class="btn variant-filled-primary" on:click={modalConfirm}>Delete</button>
+        <button class="btn variant-filled-secondary" on:click={modalUpdate}>Update</button>
     </footer>
+    {/if}
+
+
+
     <Modal/>
 </article>

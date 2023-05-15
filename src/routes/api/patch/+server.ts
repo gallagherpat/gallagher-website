@@ -1,15 +1,16 @@
 import prisma from "$lib/server/prisma";
+import prisma from "$lib/server/prisma";
 import type { RequestHandler } from './$types';
 import { json } from '@sveltejs/kit';
 
 export const PATCH = (async({ request }) => {
     const body = await request.json();
-    const articleID: number = await body.data.id
+    const postId: number = await body.data.id
     //console.log(articleID);
      async function main(){
-        const article = await prisma.article.update({
+        const article = await prisma.post.update({
             where: {
-                id: articleID
+                id: postId
             },
             data: {
                 title: body.data.newTitle,
@@ -20,6 +21,7 @@ export const PATCH = (async({ request }) => {
     main()
     .then(async()=>{
         await prisma.$disconnect()
+        //console.log(await prisma.$disconnect())
         //console.log(await prisma.$disconnect())
     })
     .catch(async(e)=>{

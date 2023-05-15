@@ -1,12 +1,15 @@
 
 <script lang="ts">
+    import type {PageData} from "./$types"
+    export let data: PageData
     export let form
+    console.log(data.user)
 </script>
-<h1>Hello World</h1>
 
-<form class="w-[70%] mx-auto" method="POST" action="?/create">
+<form class="w-[70%] mx-auto mt-12" method="POST" action="?/create">
     <label class="label">
         <span>Title</span>
+        <input type="text" name="user" value={data.user.userId} class="hidden"/>
         <input class="input" name="title" type="text" placeholder="Input" />
     </label>
     

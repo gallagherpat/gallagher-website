@@ -1,16 +1,35 @@
-<script lang='ts'>
+<script lang="ts">
 	// The ordering of these imports is critical to your app working properly
 	import '@skeletonlabs/skeleton/themes/theme-gold-nouveau.css';
+	import '@skeletonlabs/skeleton/themes/theme-gold-nouveau.css';
 	// If you have source.organizeImports set to true in VSCode, then it will auto change this ordering
+	import '@skeletonlabs/skeleton/styles/skeleton.css';
 	import '@skeletonlabs/skeleton/styles/skeleton.css';
 	// Most of your app wide CSS should be put in this file
 	import '../app.postcss';
 	import { AppShell, AppBar} from '@skeletonlabs/skeleton';
 	import type {PageData} from './$types'
+	import { error, redirect } from '@sveltejs/kit';
 
 	export let data: PageData;
 
+	async function signout() {
+
+		try{
+			const req = await fetch('/api/signout', {
+			method: 'POST'
+		});
+		const data = await req.json();
+		if(data.success){
+			location.reload();
+		}
+		}catch (error){
+			console.error(error)
+		}
+
+	}
 </script>
+
 
 
 <AppShell>
@@ -21,12 +40,6 @@
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
 				<div class="mr-12">
-					<!-- <a
-						class="btn btn-sm variant-ghost-surface"
-						href="/create"
-					>
-						Create
-					</a> -->
 					{#if !data.user}
 					<a
 						class="btn btn-sm variant-ghost-surface"
@@ -41,22 +54,22 @@
 						rel="noreferrer"
 					>
 						Sign Up
-					</a>
+					</a>			
 					{/if}
 
 					{#if data.user}
-					<form method="POST">
+					<form method="POST" on:submit|preventDefault={signout}>
 						<button class="btn btn-sm variant-ghost-surface" type="submit">Sign out</button>
+						<a
+						class="btn btn-sm variant-ghost-surface"
+						href="/create"
+						rel="noreferrer">
+						Create
+					</a>
 					</form>
 					{/if}
+			
 
-					<!-- <a
-					class="btn btn-sm variant-ghost-surface"
-					href="/guarded"
-					rel="noreferrer"
-				>
-					Protected
-				</a> -->
 				</div>
 			</svelte:fragment>
 		</AppBar>
