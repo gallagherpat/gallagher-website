@@ -2,9 +2,9 @@
 
 	import { Modal, modalStore } from '@skeletonlabs/skeleton';
     import type {ModalSettings, ModalComponent} from '@skeletonlabs/skeleton';
-    import UpdateModal from '../../docs/components/updateModal.svelte';
     import type {PageData} from './$types';
     export let data: PageData;
+
 
 	function modalConfirm(): void {
 		const d: ModalSettings = {

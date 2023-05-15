@@ -1,5 +1,14 @@
-import { type Actions, fail } from "@sveltejs/kit";
+import { type Actions, fail} from "@sveltejs/kit";
+import type { PageServerLoad } from "./$types";
 import { auth } from "$lib/server/lucia";
+import prisma from "$lib/server/prisma";
+
+export const load: PageServerLoad = async () => {
+	const posts = prisma.post.findMany()
+	return {
+		data: posts
+	}
+}
 
 export const actions: Actions = {
 	default: async ({ locals }) => {

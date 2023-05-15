@@ -1,4 +1,5 @@
-import prisma from "$lib/server/prisma.ts";
+import prisma from "$lib/server/prisma";
+import { redirect } from "@sveltejs/kit";
 
 import type { Actions, PageServerLoad } from "./$types";
 
@@ -6,12 +7,12 @@ export const load = (async({params}) =>{
     const data = await params.slug;
     
     async function main(){
-        const article = await prisma.article.findUnique({
+        const post = await prisma.post.findUnique({
             where: {
                 id: parseInt(data)
             }
         })
-        return article
+        return post
     }
     main()
     .then(async() =>{
@@ -22,7 +23,10 @@ export const load = (async({params}) =>{
         await prisma.$disconnect()
         process.exit(1)
     })
-
+    const post = await main();
+    if(post === null){
+        throw redirect(308, "/")
+    }
     return {
         data: await main()
     }
