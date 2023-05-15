@@ -1,4 +1,5 @@
 import prisma from "$lib/server/prisma";
+import prisma from "$lib/server/prisma";
 import type { RequestHandler } from './$types';
 import { json } from '@sveltejs/kit';
 
@@ -16,6 +17,7 @@ export const DELETE = (async({ request }) => {
     main()
     .then(async()=>{
         await prisma.$disconnect()
+        //console.log(await prisma.$disconnect())
         //console.log(await prisma.$disconnect())
     })
     .catch(async(e)=>{

@@ -1,11 +1,17 @@
 <script lang='ts'>
 	// The ordering of these imports is critical to your app working properly
 	import '@skeletonlabs/skeleton/themes/theme-gold-nouveau.css';
+	import '@skeletonlabs/skeleton/themes/theme-gold-nouveau.css';
 	// If you have source.organizeImports set to true in VSCode, then it will auto change this ordering
+	import '@skeletonlabs/skeleton/styles/skeleton.css';
 	import '@skeletonlabs/skeleton/styles/skeleton.css';
 	// Most of your app wide CSS should be put in this file
 	import '../app.postcss';
 	import { AppShell, AppBar} from '@skeletonlabs/skeleton';
+	import type {PageData} from './$types'
+
+	export let data: PageData;
+
 	import type {PageData} from './$types'
 	import { error, redirect } from '@sveltejs/kit';
 
@@ -29,6 +35,7 @@
 </script>
 
 
+
 <AppShell>
 	<svelte:fragment slot="header">
 		<AppBar>
@@ -37,6 +44,7 @@
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
 				<div class="mr-12">
+					<!-- <a
 					<!-- <a
 						class="btn btn-sm variant-ghost-surface"
 						href="/create"
@@ -53,9 +61,11 @@
 					</a>
 					<a
 						class="btn btn-sm variant-ghost-surface"
+						href="/login"
 						href="/signup"
 						rel="noreferrer"
 					>
+						Log In
 						Sign Up
 					</a>
 					{/if}
@@ -65,11 +75,28 @@
 						<button class="btn btn-sm variant-ghost-surface" type="submit" formaction="?/signout">Sign out</button>
 						<a
 						class="btn btn-sm variant-ghost-surface"
+						href="/signup"
 						href="/create"
 						rel="noreferrer"
 					>
+						Sign Up
 						Create
 					</a>
+					{/if}
+
+					{#if data.user}
+					<form method="POST">
+						<button class="btn btn-sm variant-ghost-surface" type="submit">Sign out</button>
+					</form>
+					{/if}
+
+					<!-- <a
+					class="btn btn-sm variant-ghost-surface"
+					href="/guarded"
+					rel="noreferrer"
+				>
+					Protected
+				</a> -->
 					</form>
 					{/if}
 
