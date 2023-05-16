@@ -20,6 +20,7 @@
             console.error(error)
         }
     }
+    console.log(data)
 </script>
 
 <h1>{data.data.title}</h1>
