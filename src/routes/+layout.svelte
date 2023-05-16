@@ -58,6 +58,7 @@
 					{/if}
 
 					{#if data.user}
+					<p>{data.user.username}</p>
 					<form method="POST" on:submit|preventDefault={signout}>
 						<button class="btn btn-sm variant-ghost-surface" type="submit">Sign out</button>
 						<a

@@ -1,6 +1,5 @@
 <script lang='ts'>
     import type { PageData } from './$types';
-
     export let data: PageData;
 
     async function deletePost() {
@@ -8,8 +7,8 @@
             const req = await fetch('/api/delete',{
                 method: 'DELETE',
                 body: JSON.stringify({
-                    id: data.data.id,
-                    user: data.data.user_id
+                    id: data.json.id,
+                    user: data.json.user_id
                 })
             });
             const res = await req.json();
@@ -23,10 +22,16 @@
     console.log(data)
 </script>
 
-<h1>{data.data.title}</h1>
-<p>{data.data.content}</p>
-
-{#if data.isUser}
-    <button class="btn variant-filled-warning" on:click={deletePost}>Delete</button>
-    <button class="btn variant-filled-primary">Modify</button>
-{/if}
+<div class="container h-full mx-auto flex justify-center">
+    <article class="prose">
+        {@html data.data[0]}
+        {@html data.data[1]}
+        <footer class="flex my-6 justify-end">
+            {#if data.isUser}
+            <button class="btn variant-filled-warning me-2" on:click={deletePost}>Delete</button>
+            <button class="btn variant-filled-primary">Modify</button>
+            {/if}        
+        </footer>
+    </article>
+</div>
+    
