@@ -3,7 +3,6 @@
     import { superForm } from 'sveltekit-superforms/client';
 
     export let data: PageData
-    
     //@ts-ignore
     const {form, enhance, errors, constraints } = superForm(data.form, {
         taintedMessage: 'Are you sure you want to leave? Changes will not be saved'
