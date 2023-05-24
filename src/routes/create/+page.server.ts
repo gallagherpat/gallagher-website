@@ -1,7 +1,7 @@
 import prisma from '$lib/server/prisma';
 import type {Actions} from './$types'
 import {auth} from '$lib/server/lucia';
-import { fail } from '@sveltejs/kit';
+import { error, fail, redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 // interface data{
@@ -14,6 +14,9 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad =async ({locals}) => {
     const session = await locals.auth.validate();
+    if(session === null){
+        throw redirect(302, '/')
+    }
     return {
         data: session
     }
