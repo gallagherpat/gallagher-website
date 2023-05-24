@@ -39,6 +39,7 @@
 				<a href="/" class="text-2xl ml-12 font-bold uppercase">Skeleton</a>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
+				<a href="/" class="btn-icon variant-filled">Twitter</a>
 				<div class="mr-12">
 					{#if !data.user}
 					<a
