@@ -93,5 +93,7 @@
 		"text",
 		"track",
 		"width"
-	]
+	],
+	"deno.enable": false,
+	"cSpell.enabled": false
 }
