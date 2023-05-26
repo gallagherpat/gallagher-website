@@ -15,7 +15,7 @@
 		</div>
 		<img height="100%" width="220px" class="transform my-auto mx-auto -scale-x-100" src="/1388609811.jpg" alt="">
 	</div>
-<div class="grid grid-cols-2 lg:grid-cols-3 lg:gap-12 md:gap-4 mx-auto w-[70%] max-w-4xl z-10"> 
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-12 md:gap-4 mx-auto w-[70%] max-w-4xl z-10"> 
 {#each posts as post}
 	<div class="text-token grid z-20">
 		<a class="card {currentVariant} card-hover overflow-hidden" href="/blog/{post.id}">
