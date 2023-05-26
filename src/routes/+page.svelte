@@ -15,12 +15,12 @@
 		</div>
 		<img height="100%" width="220px" class="transform my-auto mx-auto -scale-x-100" src="/1388609811.jpg" alt="">
 	</div>
-<div class="grid grid-cols-2 lg:grid-cols-3 lg:gap-12 md:gap-4 mx-auto w-[70%] z-10"> 
+<div class="grid grid-cols-2 lg:grid-cols-3 lg:gap-12 md:gap-4 mx-auto w-[70%] max-w-4xl z-10"> 
 {#each posts as post}
-	<div class="w-full text-token grid z-20">
+	<div class="text-token grid z-20">
 		<a class="card {currentVariant} card-hover overflow-hidden" href="/blog/{post.id}">
 			<header>
-				<img src="https://source.unsplash.com/vjUokUWbFOs/400x175" class="bg-black/50 w-full aspect-[21/9]" alt="Post" />
+				<img src="https://source.unsplash.com/vjUokUWbFOs/400x175" class="bg-black/50 w-full h-[70%] aspect-[21/9]" alt="Post" />
 			</header>
 			<div class="p-4 space-y-4 h-48">
 				<h6 class="h6">Announcements</h6>
