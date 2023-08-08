@@ -1,4 +1,5 @@
 <script lang="ts">
+	//@ts-nocheck
 	// The ordering of these imports is critical to your app working properly
 	import '@skeletonlabs/skeleton/themes/theme-gold-nouveau.css';
 	import '@skeletonlabs/skeleton/themes/theme-gold-nouveau.css';
@@ -10,6 +11,21 @@
 	import { AppShell, AppBar} from '@skeletonlabs/skeleton';
 	import type {PageData} from './$types'
 	import { error, redirect } from '@sveltejs/kit';
+	import { AppRail, AppRailTile, drawerStore, Drawer} from '@skeletonlabs/skeleton';
+	import type {DrawerSettings} from '@skeletonlabs/skeleton'
+
+	const drawerSettings: DrawerSettings = {
+	id: 'appRail',
+	// Provide your property overrides:
+	position: "top",
+	bgDrawer: 'bg-purple-900 text-white',
+	bgBackdrop: 'bg-gradient-to-tr from-indigo-500/50 via-purple-500/50 to-pink-500/50',
+	width: 'w-[100%]',
+	height: 'h-[230px] md:h-[359px]',
+	padding: 'px-4 pt-24',
+	rounded: 'rounded-xl',
+	}
+
 
 	export let data: PageData;
 
@@ -28,15 +44,25 @@
 		}
 
 	}
+	let currentTile: number = 0;
+
 </script>
 
 
 
-<AppShell>
+<AppShell regionPage="overflow-y-scroll" slotFooter="bg-black p-4">
 	<svelte:fragment slot="header">
 		<AppBar>
 			<svelte:fragment slot="lead">
-				<a href="/" class="text-2xl ml-12 font-bold uppercase">Skeleton</a>
+			<button class="btn-icon hover:variant-soft-primary md:hidden" on:click={() => { drawerStore.open(drawerSettings)}}>
+				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="32px" id="Layer_1" style="enable-background:new 0 0 32 32;" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve">
+					<style>
+						.s1 {fill: white}
+					</style>
+					<path class="s1" d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/>
+				</svg>
+			</button>
+			<a href="/" class="text-2xl ml-12 font-bold uppercase">Skeleton</a>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
 				<a href="https://rumble.com/user/shade01" class="btn-icon hover:variant-soft-primary p-2" rel="noreferrer">
@@ -67,7 +93,7 @@
 					</g>
 					</svg>
 				</a>
-				<div class="mr-12">
+				<div class="mr-12 hidden md:block">
 					{#if !data.user}
 					<a
 						class="btn btn-sm variant-ghost-surface"
@@ -102,7 +128,48 @@
 				</div>
 			</svelte:fragment>
 		</AppBar>
+
 	</svelte:fragment>
+
+	<svelte:fragment slot="sidebarLeft">
+		<Drawer>
+			<div class="logo-cloud grid-cols-1 gap-0.5">
+				<a href="/" rel="noreferrer" class="logo-item" on:click={drawerStore.close}>Home</a>
+				<a href="/create" rel="noreferrer"  class="logo-item" on:click={drawerStore.close}>Create</a>
+				<a href="/login" rel="noreferrer" class="logo-item" on:click={drawerStore.close}>Login</a>
+				<a href="/elements/logo-clouds" class="logo-item">Arcane Security</a>
+			</div>
+
+			<!-- <div class="btn-group-vertical variant-filled btn-xl px-32">
+				<button on:click={console.log("click")}>Hello</button>
+				<button on:click={console.log("click")}>Hello</button>
+				<button on:click={console.log("click")}>Hello</button>
+				<button on:click={console.log("click")}>Hello</button>
+			</div> -->
+			<!-- <AppRail class="lg:grid {$$props.class ?? ''} ">
+				<AppRailTile bind:group={currentTile} name="tile-1" value={0}>
+					<svelte:fragment slot="trail">
+						<i class="fa-solid fa-image text-2xl" />
+					</svelte:fragment>
+					<span>Test</span>
+					<a
+					href="/"
+					rel="noreferrer">
+					Create
+					</a>
+				</AppRailTile>
+				<AppRailTile bind:group={currentTile} name="tile-2" value={1}>
+					<svelte:fragment slot="trail"><i class="fa-solid fa-image text-2xl" /></svelte:fragment>
+					<span>Tile 2</span>
+				</AppRailTile>
+				<AppRailTile bind:group={currentTile} name="tile-3" value={2}>
+					<svelte:fragment slot="trail"><i class="fa-solid fa-image text-2xl" /></svelte:fragment>
+					<span>Tile 3</span>
+				</AppRailTile>
+			</AppRail> -->
+		</Drawer>
+	</svelte:fragment>
+
 	<!-- <svelte:fragment slot="sidebarLeft">Sidebar Left</svelte:fragment> -->
 	<slot />
 </AppShell>
