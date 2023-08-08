@@ -8,16 +8,14 @@
 	const posts = data.data
 </script>
 
-	<div class="grid grid-cols-3 mx-auto h-[35vh] w-[70%] gap-4 z-0">
-		<div class="space-y-5 col-span-2 my-auto mr-8 text-end">
+	<div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto h-[35vh] w-[70%] gap-4">
+		<div class="space-y-5 col-span-3 md:col-span-2 my-auto mr-8 text-end">
 			<h1 class="h1 text-5xl">Let's get to it!</h1>
 			<p class="text-lg">This is the future site of a new gamedevelopers blog and community. Tutorials, games, and blog.</p>
 		</div>
-		<img height="100%" width="220px" class="transform my-auto mx-auto -scale-x-100" src="/1388609811.jpg" alt="">
-	</div>
-<div class="grid grid-cols-2 lg:grid-cols-3 lg:gap-12 md:gap-4 mx-auto w-[70%] max-w-4xl z-10"> 
+		<img height="100%" width="220px" class="transform my-auto mx-auto col-span-3 md:col-span-2 lg:col-span-1 -scale-x-100" src="/1388609811.jpg" alt="">
 {#each posts as post}
-	<div class="text-token grid z-20">
+	<div class="text-token grid col-span-3 md:col-span-1">
 		<a class="card {currentVariant} card-hover overflow-hidden" href="/blog/{post.id}">
 			<header>
 				<img src="https://source.unsplash.com/vjUokUWbFOs/400x175" class="bg-black/50 w-full h-[70%] aspect-[21/9]" alt="Post" />
