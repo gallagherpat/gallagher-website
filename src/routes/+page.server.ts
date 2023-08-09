@@ -11,6 +11,18 @@ interface posts{
 
 export const load: PageServerLoad = async () => {
 	const posts = await prisma.post.findMany();
+	let userArray = [];
+	for(let i = 0; i < posts.length; i++){
+		// console.log(posts[i].user_id);
+		const user = await prisma.authUser.findUnique({
+			where: {
+				id: posts[i].user_id,
+			}
+		})
+		userArray.push(user.username);
+		console.log(userArray);
+	}
+
 	// let parsedPosts:posts;
 	// console.log("For each")
 	//  posts.forEach(post => parsedPosts.title = marked.parse(post.title));
@@ -19,6 +31,7 @@ export const load: PageServerLoad = async () => {
 	// const parsedTitle = await marked.parse(title);
 	// const parsedContent = await marked.parse(content);
 	return{
-		data: await posts
+		data: await posts,
+		users: await userArray,
 	}
 }
